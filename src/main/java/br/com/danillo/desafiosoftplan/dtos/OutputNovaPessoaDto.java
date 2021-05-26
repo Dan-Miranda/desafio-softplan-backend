@@ -14,8 +14,8 @@ import lombok.Setter;
 @Setter
 public class OutputNovaPessoaDto {
     @ApiModelProperty(example = "607874828fe0223030582bb8")
-    private String idPessoa;
+    private String cpf;
 
-    @ApiModelProperty(example = "607874828fe0223030582bb8")
+    @ApiModelProperty(example = "2021-04-16T10:55:33.444")
     private Date dataCadastro;
 }

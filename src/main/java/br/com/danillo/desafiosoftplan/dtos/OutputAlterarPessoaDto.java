@@ -16,6 +16,6 @@ public class OutputAlterarPessoaDto {
     @ApiModelProperty(example = "76839953041")
     private String idPessoa;
 
-    @ApiModelProperty(example = "607874828fe0223030582bb8")
+    @ApiModelProperty(example = "2021-04-16T10:55:33.444")
     private Date dataAtualizacao;
 }
