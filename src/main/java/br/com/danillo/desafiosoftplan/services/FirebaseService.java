@@ -19,15 +19,17 @@ public class FirebaseService {
     @PostConstruct
     private void initialize() throws IOException {
         try {
-            var serviceAccount = new FileInputStream("src/main/resources/desafio-softplan-firebase-adminsdk-bgzjb-4c4ef9f6ab.json");
+            var serviceAccount = new FileInputStream("firebaseService.json");
+            //this.getClass().getClassLoader().getResourceAsStream("./firebaseService.json");
             var options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .setProjectId("desafio-softplan")
                 .build();
 
             if (FirebaseApp.getApps().isEmpty()) {
                 FirebaseApp.initializeApp(options);
-            }
 
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -71,10 +71,6 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
@@ -138,7 +134,7 @@
 				</executions>
 				<configuration>
 					<useMavenSettingsForAuth>true</useMavenSettingsForAuth>
-					<repository>danillomiranda/spring-docker-spotify</repository>
+					<repository>danillomiranda/desafio-softplan</repository>
 					<tag>${project.version}</tag>
 					<buildArgs>
 					  <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>

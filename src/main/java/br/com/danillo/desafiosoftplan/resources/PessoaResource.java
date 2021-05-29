@@ -6,6 +6,7 @@ import java.util.concurrent.ExecutionException;
 
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.danillo.desafiosoftplan.dtos.PessoaDto;
+import br.com.danillo.desafiosoftplan.configurations.ExcecaoApi;
 import br.com.danillo.desafiosoftplan.dtos.InputAtualizacaoPessoaDto;
 import br.com.danillo.desafiosoftplan.dtos.OutputNovaPessoaDto;
 import br.com.danillo.desafiosoftplan.services.PessoaService;
@@ -44,6 +46,7 @@ public class PessoaResource {
         return ResponseEntity
             .created(URI.create(String.format("%s/%s", "/cadastrar", resposta.getCpf())))
             .body(resposta);
+
     }
 
     @ApiOperation(value = "Este endpoint busca pessoas")
