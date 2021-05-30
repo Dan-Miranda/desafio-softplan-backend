@@ -1,12 +1,12 @@
 package br.com.danillo.desafiosoftplan.resources;
 
 import java.net.URI;
+import java.text.ParseException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import javax.validation.Valid;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.danillo.desafiosoftplan.dtos.PessoaDto;
-import br.com.danillo.desafiosoftplan.configurations.ExcecaoApi;
 import br.com.danillo.desafiosoftplan.dtos.InputAtualizacaoPessoaDto;
 import br.com.danillo.desafiosoftplan.dtos.OutputNovaPessoaDto;
 import br.com.danillo.desafiosoftplan.services.PessoaService;
@@ -40,7 +39,7 @@ public class PessoaResource {
     public ResponseEntity<OutputNovaPessoaDto> cadastraPessoa(
         @ApiParam(value = "Dados da pessoa que será cadastrada", required = true)
         @Valid @RequestBody PessoaDto pessoaDto)
-        throws InterruptedException, ExecutionException {
+        throws InterruptedException, ExecutionException, ParseException {
 
         var resposta = pessoaService.inserePessoa(pessoaDto);
         return ResponseEntity

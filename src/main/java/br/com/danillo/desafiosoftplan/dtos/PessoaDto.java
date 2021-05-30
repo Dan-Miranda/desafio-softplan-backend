@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.regex.Pattern;
@@ -35,7 +37,7 @@ public class PessoaDto {
     @NotNull(message = "O campo dataNascimento é obrigatório.")
     @JsonFormat(shape = JsonFormat.Shape.STRING, timezone = "America/Sao_Paulo")
     @ApiModelProperty(example = "2021-04-16T10:55:33.444")
-    private Date dataNascimento;
+    private String dataNascimento;
 
     @ApiModelProperty(example = "São Paulo - SP")
     private String naturalidade;
@@ -53,8 +55,10 @@ public class PessoaDto {
     private Date dataAtualizacao;
 
     @JsonIgnore
-    public boolean validarDataNascimento() {
-        return this.dataNascimento.before(new Date());
+    public boolean validarDataNascimento() throws ParseException {
+        var formatoData = new SimpleDateFormat("dd/MM/yyyy");
+        var data = formatoData.parse(this.dataNascimento);
+        return data.before(new Date());
     }
 
     @JsonIgnore

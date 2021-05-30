@@ -2,8 +2,6 @@ package br.com.danillo.desafiosoftplan.configurations;
 
 import java.time.LocalDateTime;
 
-import com.spotify.docker.client.exceptions.NotFoundException;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
