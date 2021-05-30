@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.danillo.desafiosoftplan.dtos.PessoaDto;
-import br.com.danillo.desafiosoftplan.configurations.ExcecaoApi;
+import br.com.danillo.desafiosoftplan.dtos.ProjetosDto;
 import br.com.danillo.desafiosoftplan.dtos.InputAtualizacaoPessoaDto;
 import br.com.danillo.desafiosoftplan.dtos.OutputNovaPessoaDto;
 import br.com.danillo.desafiosoftplan.services.PessoaService;
@@ -53,6 +53,17 @@ public class PessoaResource {
     @GetMapping("/buscar")
     public ResponseEntity<List<PessoaDto>> buscaPessoas() throws InterruptedException, ExecutionException {
         return ResponseEntity.ok(pessoaService.buscaPessoas());
+    }
+
+    @ApiOperation(value = "Este endpoint retorna os projetos do Danillo miranda")
+    @GetMapping("/source")
+    public ResponseEntity<ProjetosDto> projetos() {
+        var links = new ProjetosDto(
+            "https://github.com/Dan-Miranda/desafio-softplan-backend.git",
+            "https://hub.docker.com/r/danillomiranda/desafio-softplan",
+            "https://github.com/Dan-Miranda/desafio-softplan-frontend.git"
+        );
+        return ResponseEntity.status(HttpStatus.OK).body(links);
     }
 
     @ApiOperation(value = "Este endpoint busca uma pessoa por CPF")
