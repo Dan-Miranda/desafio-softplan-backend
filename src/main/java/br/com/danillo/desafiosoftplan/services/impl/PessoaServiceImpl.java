@@ -1,7 +1,5 @@
 package br.com.danillo.desafiosoftplan.services.impl;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,7 +31,7 @@ public class PessoaServiceImpl implements PessoaService {
     public static final String MENSAGEM_CPF_INVALIDO = "CPF inválido";
 
     @Override
-    public OutputNovaPessoaDto inserePessoa(PessoaDto inputNovaPessoaDto) throws InterruptedException, ExecutionException, ParseException {
+    public OutputNovaPessoaDto inserePessoa(PessoaDto inputNovaPessoaDto) throws InterruptedException, ExecutionException {
         Assert.isTrue(inputNovaPessoaDto.validarCpf(null), MENSAGEM_CPF_INVALIDO);
         Assert.isTrue(inputNovaPessoaDto.validarDataNascimento(), "Data de nascimento inválida");
 

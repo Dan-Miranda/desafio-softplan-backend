@@ -1,12 +1,12 @@
 package br.com.danillo.desafiosoftplan.resources;
 
 import java.net.URI;
-import java.text.ParseException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.danillo.desafiosoftplan.dtos.PessoaDto;
+import br.com.danillo.desafiosoftplan.dtos.ProjetosDto;
 import br.com.danillo.desafiosoftplan.dtos.InputAtualizacaoPessoaDto;
 import br.com.danillo.desafiosoftplan.dtos.OutputNovaPessoaDto;
 import br.com.danillo.desafiosoftplan.services.PessoaService;
@@ -39,7 +40,7 @@ public class PessoaResource {
     public ResponseEntity<OutputNovaPessoaDto> cadastraPessoa(
         @ApiParam(value = "Dados da pessoa que será cadastrada", required = true)
         @Valid @RequestBody PessoaDto pessoaDto)
-        throws InterruptedException, ExecutionException, ParseException {
+        throws InterruptedException, ExecutionException {
 
         var resposta = pessoaService.inserePessoa(pessoaDto);
         return ResponseEntity
@@ -52,6 +53,17 @@ public class PessoaResource {
     @GetMapping("/buscar")
     public ResponseEntity<List<PessoaDto>> buscaPessoas() throws InterruptedException, ExecutionException {
         return ResponseEntity.ok(pessoaService.buscaPessoas());
+    }
+
+    @ApiOperation(value = "Este endpoint retorna os projetos do Danillo miranda")
+    @GetMapping("/source")
+    public ResponseEntity<ProjetosDto> projetos() {
+        var links = new ProjetosDto(
+            "https://github.com/Dan-Miranda/desafio-softplan-backend.git",
+            "https://hub.docker.com/r/danillomiranda/desafio-softplan",
+            "https://github.com/Dan-Miranda/desafio-softplan-frontend.git"
+        );
+        return ResponseEntity.status(HttpStatus.OK).body(links);
     }
 
     @ApiOperation(value = "Este endpoint busca uma pessoa por CPF")
